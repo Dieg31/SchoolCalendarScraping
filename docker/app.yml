@@ -1,0 +1,6 @@
+version: '2'
+services:
+    cnam-calendar:
+        image: cnam-cal
+        volumes:
+            - /Users/diego/Desktop/testScrap/volumeDocker/:/root/
