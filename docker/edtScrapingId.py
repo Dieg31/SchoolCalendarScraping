@@ -1,13 +1,14 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from bs4 import BeautifulSoup
 import re
 import pandas as pd
 import os
 import time
-from datetime import datetime
 from icalendar import Calendar, Event
 import locale
+import dateparser # $ pip install dateparser
 
 def ucours(dateDebut, dateFin, matiere, enseignant, commentaire):
     uncours = []
@@ -23,7 +24,11 @@ def ucours(dateDebut, dateFin, matiere, enseignant, commentaire):
 url = "http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl"
 
 # create a new Firefox session
-driver = webdriver.Safari()
+
+#driver = webdriver.Firefox()
+driver = webdriver.Remote(
+   command_executor='http://172.17.0.2:4444/wd/hub',
+   desired_capabilities=DesiredCapabilities.FIREFOX)
 driver.implicitly_wait(30)
 driver.get(url)
 
@@ -138,7 +143,7 @@ print("fin")
 print("creation calendrier")
 
 #pour parser des dates en français
-locale.setlocale(locale.LC_ALL, 'fr_FR')
+#locale.setlocale(locale.LC_ALL, 'fr_FR')
 
 cal = Calendar()
 cal.add("summary", "Calendrier Cnam I2")
@@ -146,8 +151,8 @@ cal.add('version', '2.0')
 
 for c in cours :
     
-    dateDebut = datetime.strptime(c[0], '%A %d %B %Y %H:%M')
-    dateFin = datetime.strptime(c[1], '%A %d %B %Y %H:%M')
+    dateDebut = dateparser.parse(c[0])
+    dateFin = dateparser.parse(c[1])
 
     if 'En entreprise' not in c[2] and  'nondéfini' not in c[2] and 'Férié' not in c[2]:
         event = Event()
