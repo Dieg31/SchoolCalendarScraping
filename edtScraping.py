@@ -122,6 +122,8 @@ def getDayOfWeek(driver):
     return semaine
 
 def get_cal():
+    print("edtScraping ", datetime.format(datetime.now()))
+
     url = "http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl"
 
     # create a new Firefox session
@@ -177,12 +179,18 @@ def get_cal():
             event.add('summary', matiere) 
             event.add('description', 'Enseignant : ' + cour.enseignant + "\nCommentaire : " + cour.commentaire) 
             cal.add_component(event)
+    
 
-    # sauvegarde du .ics
-    with open('calendarCnamI2.ics', 'wb') as f:
+    # sauvegarde du .ics historique
+    dateForIcsName = today.strftime('%Y-%m-%d_%H:%M')
+    with open('history/calendarCnamI2'+ dateForIcsName +'.ics', 'wb') as f:
         f.write(cal.to_ical())
         f.close
 
+    # ecrasement de l'ancien    
+    with open('history/calendarCnamI2.ics', 'wb') as f:
+        f.write(cal.to_ical())
+        f.close
     return cal
 
 
