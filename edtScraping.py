@@ -12,8 +12,18 @@ import dateparser # $ pip install dateparser
 from datetime import datetime, timedelta, date
 
 class Cours:
+    """
+        Class to create a Cours
+    """
     def __init__(self, dateDebut, dateFin, matiere, enseignant, commentaire):
-        """Constructeur de notre classe"""
+        """
+            Constructor 
+                dateDebut
+                dateFin
+                matiere
+                enseignant
+                commentaire
+        """
         self.dateDebut = dateDebut
         self.dateFin = dateFin
         self.matiere = matiere
@@ -28,6 +38,9 @@ class Cours:
 
 
 def scrapCours(driver, cours, year, semaine):
+    """
+        To only scrap table of classes of a week
+    """
     soup = BeautifulSoup(driver.page_source, 'lxml')
 
     cours.append(Cours(
@@ -127,10 +140,10 @@ def get_cal():
     url = "http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl"
 
     # create a new Firefox session
-    driver = webdriver.Firefox()
-    # driver = webdriver.Remote(
-    # command_executor='http://172.17.0.2:4444/wd/hub',
-    # desired_capabilities=DesiredCapabilities.FIREFOX)
+    #driver = webdriver.Firefox()
+    driver = webdriver.Remote(
+    command_executor='http://172.17.0.2:4444/wd/hub',
+    desired_capabilities=DesiredCapabilities.FIREFOX)
     driver.implicitly_wait(30)
     driver.get(url)
 
@@ -187,11 +200,9 @@ def get_cal():
         f.write(cal.to_ical())
         f.close
 
-    # ecrasement de l'ancien    
-    with open('history/calendarCnamI2.ics', 'wb') as f:
+    # ecrasement de l'ancien sauvegarde du nouveau
+    with open('last/calendarCnamI2.ics', 'wb') as f:
         f.write(cal.to_ical())
         f.close
     return cal
 
-
-get_cal()
