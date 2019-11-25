@@ -7,12 +7,18 @@ app = Flask(__name__)
 
 @app.route('/scrap')
 def launch_scrap():
+    """
+        To launch website scraping manually
+    """
     get_cal()
     return "Done"
 
 
 @app.route('/ics')
 def get_ics_file():
+    """
+        To get last ics file with lastest datas
+    """
     try:
         with open('last/calendarCnamI2.ics', 'w') as calendarCnamFile:
           text = calendarCnamFile  
