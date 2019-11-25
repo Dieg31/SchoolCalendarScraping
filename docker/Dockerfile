@@ -4,5 +4,6 @@ WORKDIR /root/
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY edtScrapingId.py edtScrapingId.py
+COPY edtScraping.py edtScraping.py
 
+EXPOSE 5000
