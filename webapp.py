@@ -1,7 +1,8 @@
 
 from flask import Flask, request, make_response
 from icalendar import Calendar, Event
-from edtScraping import get_cal
+from calScraping import get_cal
+import os.path
 
 app = Flask(__name__)
 
@@ -20,8 +21,8 @@ def get_ics_file():
         To get last ics file with lastest datas
     """
     try:
-        with open('last/calendarCnamI2.ics', 'w') as calendarCnamFile:
-          text = calendarCnamFile  
+        with open('/home/test/last/calendarCnamI2.ics') as calendarCnamFile:
+            text = calendarCnamFile.read()
     except Exception as e:
         cal = Calendar()
         cal.add("summary", "Imported from Cnam edt, but failed.")
