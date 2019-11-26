@@ -1,0 +1,8 @@
+
+icalendar
+selenium
+bs4
+pandas
+flask
+dateparser
+lxml

@@ -1,0 +1,14 @@
+version: '2'
+services:
+    cnam-calendar:
+        image: cal-scrap-app
+        volumes:
+            - /Users/diego/Projets/CnamScraping/volumeDocker/:/home/test/vol/
+        ports:
+            - 5000:5000
+        tty: true
+    selenium:
+        image: selenium/standalone-firefox-debug
+        ports: 
+            - 4444:4444
+            - 5900:5900
