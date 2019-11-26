@@ -1,5 +1,0 @@
-
-icalendar
-selenium
-bs4
-pandas
