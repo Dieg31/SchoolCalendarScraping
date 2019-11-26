@@ -135,14 +135,15 @@ def getDayOfWeek(driver):
     return semaine
 
 def get_cal():
-    print("edtScraping ", datetime.format(datetime.now()))
-
+    now = datetime.now()
+    print("edtScraping ", now.strftime("%d/%m/%Y %H:%M"))
+    
     url = "http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl"
 
     # create a new Firefox session
     #driver = webdriver.Firefox()
     driver = webdriver.Remote(
-    command_executor='http://172.17.0.2:4444/wd/hub',
+    command_executor='http://selenium:4444/wd/hub',
     desired_capabilities=DesiredCapabilities.FIREFOX)
     driver.implicitly_wait(30)
     driver.get(url)
@@ -158,6 +159,7 @@ def get_cal():
 
     numberOfWeekUntilEndOfYear = int(((monday2 - monday1).days / 7) + 1)
 
+    print("Scrap starting ...")
     for i in range(numberOfWeekUntilEndOfYear):
         year = getYear(driver)
         week = getDayOfWeek(driver)        
@@ -193,16 +195,23 @@ def get_cal():
             event.add('description', 'Enseignant : ' + cour.enseignant + "\nCommentaire : " + cour.commentaire) 
             cal.add_component(event)
     
+    print("Scrap end")
 
     # sauvegarde du .ics historique
     dateForIcsName = today.strftime('%Y-%m-%d_%H:%M')
-    with open('history/calendarCnamI2'+ dateForIcsName +'.ics', 'wb') as f:
+    with open('/home/test/history/calendarCnamI2'+ dateForIcsName +'.ics', 'wb') as f:
         f.write(cal.to_ical())
         f.close
+        print('/home/test/history/calendarCnamI2' + dateForIcsName +'.ics Saved')
+
 
     # ecrasement de l'ancien sauvegarde du nouveau
-    with open('last/calendarCnamI2.ics', 'wb') as f:
+    with open('/home/test/last/calendarCnamI2.ics', 'wb') as f:
         f.write(cal.to_ical())
         f.close
+        print("/home/test/last/calendarCnamI2.ics Saved")
+
+
     return cal
 
+#get_cal()
