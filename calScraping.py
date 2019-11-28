@@ -199,17 +199,17 @@ def get_cal():
 
     # sauvegarde du .ics historique
     dateForIcsName = today.strftime('%Y-%m-%d_%H:%M')
-    with open('/home/test/history/calendarCnamI2'+ dateForIcsName +'.ics', 'wb') as f:
+    with open('/home/scraper/history/calendarCnamI2'+ dateForIcsName +'.ics', 'wb') as f:
         f.write(cal.to_ical())
         f.close
-        print('/home/test/history/calendarCnamI2' + dateForIcsName +'.ics Saved')
+        print('/home/scraper/history/calendarCnamI2' + dateForIcsName +'.ics Saved')
 
 
     # ecrasement de l'ancien sauvegarde du nouveau
-    with open('/home/test/last/calendarCnamI2.ics', 'wb') as f:
+    with open('/home/scraper/last/calendarCnamI2.ics', 'wb') as f:
         f.write(cal.to_ical())
         f.close
-        print("/home/test/last/calendarCnamI2.ics Saved")
+        print("/home/scraper/last/calendarCnamI2.ics Saved")
 
 
     return cal

@@ -1,5 +1,5 @@
 FROM python:3
-WORKDIR /home/test/
+WORKDIR /home/scraper/
 
 RUN apt-get -y update && apt-get -y upgrade
 

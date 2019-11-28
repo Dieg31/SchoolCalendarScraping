@@ -3,7 +3,7 @@ services:
     cnam-calendar:
         image: cal-scrap-app
         volumes:
-            - /Users/diego/Projets/CnamScraping/volumeDocker/:/home/test/vol/
+            - /Users/diego/Projets/CnamScraping/volumeDocker/:/home/scraper/
         ports:
             - 5000:5000
         tty: true
