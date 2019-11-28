@@ -1,2 +1,2 @@
-00 22 * * 0 python3 /home/test/edtScraping.py >> /var/log/cron.log
-#tous les dimanche à 22h00
+59 11 * * 0 python3 /home/test/calScraping.py >> /var/log/cron.log
+#tous les dimanche à 11h59

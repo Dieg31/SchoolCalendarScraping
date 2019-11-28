@@ -14,3 +14,8 @@ To run applications :
 ```
 docker-compose -f app.yml up
 ```
+
+To see cron log :
+```
+tail -f /var/log/crontab-edt-scrap.log
+```
