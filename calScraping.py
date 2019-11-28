@@ -1,15 +1,12 @@
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from bs4 import BeautifulSoup
 import re
-import pandas as pd
 import os
 import time
 from icalendar import Calendar, Event
-import locale
 import dateparser # $ pip install dateparser
-from datetime import datetime, timedelta, date
+from datetime import datetime, timedelta
 
 class Cours:
     """
