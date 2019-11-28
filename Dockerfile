@@ -9,6 +9,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY calScraping.py calScraping.py
 COPY webapp.py webapp.py
+COPY start.sh start.sh
+
+RUN chmod +x start.sh
 
 RUN apt-get install -y cron 
 RUN touch /var/log/crontab-edt-scrap.log
