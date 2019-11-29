@@ -22,4 +22,6 @@ EXPOSE 5000
 
 RUN mkdir last
 RUN mkdir history
-CMD ./start.sh
+# ne fonctionne pas donc à lancer à la main ...
+# CMD ./start.sh
+# CMD [ "/bin/bash", "/home/root/myproject/uwsgi.sh", "start" ]
