@@ -8,7 +8,7 @@ services:
             - 5000:5000
         tty: true
     selenium:
-        image: deinchristian/rpi-standalone-firefox-debug
+        image: deinchristian/rpi-selenium-standalone-firefox-debug
         ports: 
             - 4444:4444
             - 5901:5900
