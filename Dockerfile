@@ -19,7 +19,4 @@ RUN cron
 
 EXPOSE 5000
 
-RUN  bash -c 'mkdir -p vol/last'
-RUN  bash -c 'mkdir -p vol/history'
-
 CMD [ "python3", "./webapp.py" ]
