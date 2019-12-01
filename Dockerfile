@@ -15,7 +15,7 @@ RUN apt-get install -y cron
 RUN touch /var/log/crontab-edt-scrap.log
 COPY crontab-edt-scrap /etc/cron.d/crontab-edt-scrap
 RUN chmod 0644 /etc/cron.d/crontab-edt-scrap
-RUN cron -f
+RUN cron
 
 EXPOSE 5000
 
