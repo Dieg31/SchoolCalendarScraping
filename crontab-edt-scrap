@@ -1,2 +1,2 @@
-59 11 * * 0 python3 /home/test/calScraping.py >> /var/log/cron.log
+59 11 * * 0 python3 /home/scraper/calScraping.py >> /var/log/cron.log
 #tous les dimanche à 11h59

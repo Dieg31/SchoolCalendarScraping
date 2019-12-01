@@ -12,9 +12,10 @@ COPY webapp.py webapp.py
 
 
 RUN apt-get install -y cron 
-RUN touch /var/log/crontab-edt-scrap.log
 COPY crontab-edt-scrap /etc/cron.d/crontab-edt-scrap
 RUN chmod 0644 /etc/cron.d/crontab-edt-scrap
+RUN crontab /etc/cron.d/crontab-edt-scrap
+RUN touch /var/log/crontab-edt-scrap.log
 RUN cron
 
 EXPOSE 5000
