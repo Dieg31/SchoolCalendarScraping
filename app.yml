@@ -2,6 +2,7 @@ version: '2'
 services:
     cnam-calendar:
         image: cal-scrap-app
+        restart: always
         volumes:
             - /home/pi/Projets/CnamScraping/volDocker/:/home/scraper/vol/
         ports:
