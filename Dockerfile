@@ -17,11 +17,11 @@ RUN apt-get install -y cron
 RUN touch /var/log/crontab-edt-scrap.log
 COPY crontab-edt-scrap /etc/cron.d/crontab-edt-scrap
 RUN chmod 0644 /etc/cron.d/crontab-edt-scrap
+RUN cron -f
 
 EXPOSE 5000
 
-RUN mkdir last
-RUN mkdir history
-# ne fonctionne pas donc à lancer à la main ...
-# CMD ./start.sh
-# CMD [ "/bin/bash", "/home/root/myproject/uwsgi.sh", "start" ]
+RUN mkdir -p vol/last
+RUN mkdir -p vol/history
+
+CMD [ "python3", "./webapp.py" ]
