@@ -1,2 +1,0 @@
-59 11 * * 0 python3 /home/scraper/calScraping.py >> /var/log/crontab-edt-scrap.log
-#tous les dimanche à 11h59

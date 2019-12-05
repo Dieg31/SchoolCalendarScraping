@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  cnam-calendar-scrapper:
+    build: scrapper
+    image: cnam-calendar-scrapper
+    container_name: cnam-calendar-scrapper
+
+  cnam-calendar-webserver:
+    build: webserver
+    image: cnam-calendar-webserver
+    container_name: cnam-calendar-webserver
+    ports:
+      - 5000:5000

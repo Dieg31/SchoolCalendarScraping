@@ -1,4 +1,3 @@
-
 from flask import Flask, request, make_response
 from icalendar import Calendar, Event
 from calScraping import get_cal
@@ -29,7 +28,7 @@ def get_ics_file():
         cal.add('version', '2.0')
         text = cal.to_ical()
         print("error /ics")
-    
+
     res = make_response(text)
     res.headers.set('Content-Disposition', 'attachment;filename=calendar.ics')
     res.headers.set('Content-Type', 'text/calendar;charset=utf-8')

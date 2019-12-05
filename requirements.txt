@@ -1,7 +1,0 @@
-
-icalendar
-selenium
-bs4
-flask
-dateparser
-lxml
