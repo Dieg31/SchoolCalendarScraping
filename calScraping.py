@@ -190,7 +190,7 @@ def get_cal():
             matiere = cour.matiere[:6] + " " + cour.matiere[6:]
 
             event.add('summary', matiere) 
-            event.add('description', 'Enseignant : ' + cour.enseignant + "\nCommentaire : " + cour.commentaire) 
+            event.add('description', 'Enseignant : ' + cour.enseignant + "\nCommentaire : " + cour.commentaire + "\nhttp://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl") 
             cal.add_component(event)
     
     print("Scrap end")
