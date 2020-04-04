@@ -4,7 +4,7 @@ services:
         container_name: scraper
         build:
             context: ./../
-            dockerfile: ./devEnv/Dockerfile
+            dockerfile: ./prodEnv/Dockerfile
         image: cal-scrap-app
         restart: always
         volumes:
