@@ -1,0 +1,21 @@
+version: '2'
+services:
+    cnam-calendar:
+        container_name: scraper
+        build:
+            context: ./../
+            dockerfile: ./devEnv/Dockerfile
+        image: cal-scrap-app
+        restart: always
+        volumes:
+            - /home/lambda/Docker/Volume/CnamScraping/last/:/home/scraper/last/
+            - /home/lambda/Docker/Volume/CnamScraping/history/:/home/scraper/history/
+        ports:
+            - 5000:5000
+        tty: true
+    selenium:
+        container_name: selenium
+        image: selenium/standalone-firefox
+        ports: 
+            - 4444:4444
+            - 5901:5900
