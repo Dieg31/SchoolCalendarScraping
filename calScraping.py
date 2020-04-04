@@ -140,8 +140,9 @@ def get_cal():
     # create a new Firefox session
     #driver = webdriver.Firefox()
     driver = webdriver.Remote(
-    command_executor='http://selenium:4444/wd/hub',
-    desired_capabilities=DesiredCapabilities.FIREFOX)
+        command_executor='http://selenium:4444/wd/hub',
+        desired_capabilities=DesiredCapabilities.FIREFOX
+    )
     driver.implicitly_wait(30)
     driver.get(url)
 
@@ -196,19 +197,18 @@ def get_cal():
 
     # sauvegarde du .ics historique
     dateForIcsName = today.strftime('%Y-%m-%d_%H:%M')
-    with open('/home/scraper/vol/history/calendarCnamI2'+ dateForIcsName +'.ics', 'wb') as f:
+    with open('/home/scraper/history/calendarCnamI2'+ dateForIcsName +'.ics', 'wb') as f:
         f.write(cal.to_ical())
         f.close
-        print('/home/scraper/vol/history/calendarCnamI2' + dateForIcsName +'.ics Saved')
+        print('/home/scraper/history/calendarCnamI2' + dateForIcsName +'.ics Saved')
 
 
     # ecrasement de l'ancien sauvegarde du nouveau
-    with open('/home/scraper/vol/last/calendarCnamI2.ics', 'wb') as f:
+    with open('/home/scraper/last/calendarCnamI2.ics', 'wb') as f:
         f.write(cal.to_ical())
         f.close
-        print("/home/scraper/vol/last/calendarCnamI2.ics Saved")
+        print("/home/scraper/last/calendarCnamI2.ics Saved")
 
 
     return cal
 
-get_cal()
