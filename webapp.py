@@ -21,7 +21,7 @@ def get_ics_file():
         To get last ics file with lastest datas
     """
     try:
-        with open('/home/scraper/vol/last/calendarCnamI2.ics') as calendarCnamFile:
+        with open('/home/scraper/last/calendarCnamI2.ics') as calendarCnamFile:
             text = calendarCnamFile.read()
     except Exception as e:
         cal = Calendar()
