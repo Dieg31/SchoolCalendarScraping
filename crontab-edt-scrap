@@ -1,2 +1,2 @@
-59 11 * * 0 python3 /home/scraper/calScraping.py >> /var/log/crontab-edt-scrap.log
-#tous les dimanche à 11h59
+59 20 * * * cd /home/scraper/ && /usr/local/bin/python3 -c 'from calScraping import get_cal; get_cal()' >> /var/log/scraper.log 2>&1
+#tous les jour à 22h59

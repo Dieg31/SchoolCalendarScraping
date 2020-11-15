@@ -1,18 +1,42 @@
 version: '2'
 services:
-    cnam-calendar:
+    scraper-api:
+        container_name: scraper-api
+        build:
+            context: ./../
+            dockerfile: ./prodEnv/Dockerfile
+        image: scraper
+        restart: always
+        # volumes:
+        #     - /home/lambda/Docker/Volume/CnamScraping/last/:/home/scraper/last/
+        #     - /home/lambda/Docker/Volume/CnamScraping/history/:/home/scraper/history/
+        volumes:
+            - ./last/:/home/scraper/last/
+            - ./history/:/home/scraper/history/
+            - log
+        ports:
+            - 5000:5000
+        tty: true
+
+    scraper:
         container_name: scraper
         build:
             context: ./../
             dockerfile: ./prodEnv/Dockerfile
-        image: cal-scrap-app
+        image: scraper
         restart: always
+        # volumes:
+        #     - /home/lambda/Docker/Volume/CnamScraping/last/:/home/scraper/last/
+        #     - /home/lambda/Docker/Volume/CnamScraping/history/:/home/scraper/history/
         volumes:
-            - /home/lambda/Docker/Volume/CnamScraping/last/:/home/scraper/last/
-            - /home/lambda/Docker/Volume/CnamScraping/history/:/home/scraper/history/
+            - ./last/:/home/scraper/last/
+            - ./history/:/home/scraper/history/
+            - log
         ports:
             - 5000:5000
         tty: true
+
+
     selenium:
         container_name: selenium
         image: selenium/standalone-firefox

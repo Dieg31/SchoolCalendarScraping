@@ -1,0 +1,156 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+SUMMARY:Calendrier Cnam I2
+BEGIN:VEVENT
+SUMMARY:TET102  - Management Social pour Ingénieur
+DTSTART;VALUE=DATE-TIME:20200415T090000
+DTEND;VALUE=DATE-TIME:20200415T123000
+DESCRIPTION:Enseignant : P.FADEUILHE\nCommentaire : \n\nDate de scan : 11/
+ 04/2020 20:51
+URL:http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:NSY102 Conception de logiciels Intranet
+DTSTART;VALUE=DATE-TIME:20200415T133000
+DTEND;VALUE=DATE-TIME:20200415T170000
+DESCRIPTION:Enseignant : J.LAFORGUE\nCommentaire : \n\nDate de scan : 11/0
+ 4/2020 20:51
+URL:http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:NSY104 Architecture des systèmes info.
+DTSTART;VALUE=DATE-TIME:20200416T090000
+DTEND;VALUE=DATE-TIME:20200416T123000
+DESCRIPTION:Enseignant : L.CHAARI\nCommentaire : \n\nDate de scan : 11/04/
+ 2020 20:51
+URL:http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:NSY107 Intégrationdes syst. C/S
+DTSTART;VALUE=DATE-TIME:20200416T133000
+DTEND;VALUE=DATE-TIME:20200416T170000
+DESCRIPTION:Enseignant : B.RAIFF\nCommentaire : \n\nDate de scan : 11/04/2
+ 020 20:51
+URL:http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Projet    
+DTSTART;VALUE=DATE-TIME:20200417T090000
+DTEND;VALUE=DATE-TIME:20200417T123000
+DESCRIPTION:Enseignant : H.BATATIA\nCommentaire : \n\nDate de scan : 11/04
+ /2020 20:51
+URL:http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:NFE114 Systèmes  d'Information & Web
+DTSTART;VALUE=DATE-TIME:20200417T133000
+DTEND;VALUE=DATE-TIME:20200417T170000
+DESCRIPTION:Enseignant : S.ISNARD\nCommentaire : \n\nDate de scan : 11/04/
+ 2020 20:51
+URL:http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:TET102  - Management Social pour Ingénieur
+DTSTART;VALUE=DATE-TIME:20200429T090000
+DTEND;VALUE=DATE-TIME:20200429T123000
+DESCRIPTION:Enseignant : P.FADEUILHE\nCommentaire : \n\nDate de scan : 11/
+ 04/2020 20:51
+URL:http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:NSY104 Architecture des systèmes info.
+DTSTART;VALUE=DATE-TIME:20200429T133000
+DTEND;VALUE=DATE-TIME:20200429T170000
+DESCRIPTION:Enseignant : L.CHAARI\nCommentaire : examen\n\nDate de scan : 
+ 11/04/2020 20:51
+URL:http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:NFE114 Systèmes  d'Information & Web
+DTSTART;VALUE=DATE-TIME:20200430T090000
+DTEND;VALUE=DATE-TIME:20200430T123000
+DESCRIPTION:Enseignant : S.ISNARD\nCommentaire : \n\nDate de scan : 11/04/
+ 2020 20:51
+URL:http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:NSY107 Intégrationdes syst. C/S
+DTSTART;VALUE=DATE-TIME:20200430T133000
+DTEND;VALUE=DATE-TIME:20200430T170000
+DESCRIPTION:Enseignant : B.RAIFF\nCommentaire : \n\nDate de scan : 11/04/2
+ 020 20:51
+URL:http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:TET102  - Management Social pour Ingénieur
+DTSTART;VALUE=DATE-TIME:20200513T090000
+DTEND;VALUE=DATE-TIME:20200513T123000
+DESCRIPTION:Enseignant : P.FADEUILHE\nCommentaire : \n\nDate de scan : 11/
+ 04/2020 20:51
+URL:http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:NFE114 Systèmes  d'Information & Web
+DTSTART;VALUE=DATE-TIME:20200515T133000
+DTEND;VALUE=DATE-TIME:20200515T170000
+DESCRIPTION:Enseignant : S.ISNARD\nCommentaire : EXAMEN\n\nDate de scan : 
+ 11/04/2020 20:51
+URL:http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:TET102  - Management Social pour Ingénieur
+DTSTART;VALUE=DATE-TIME:20200527T090000
+DTEND;VALUE=DATE-TIME:20200527T123000
+DESCRIPTION:Enseignant : P.FADEUILHE\nCommentaire : \n\nDate de scan : 11/
+ 04/2020 20:51
+URL:http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:TET102  - Management Social pour Ingénieur
+DTSTART;VALUE=DATE-TIME:20200610T090000
+DTEND;VALUE=DATE-TIME:20200610T123000
+DESCRIPTION:Enseignant : P.FADEUILHE\nCommentaire : \n\nDate de scan : 11/
+ 04/2020 20:51
+URL:http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:TET102  - Management Social pour Ingénieur
+DTSTART;VALUE=DATE-TIME:20200612T090000
+DTEND;VALUE=DATE-TIME:20200612T123000
+DESCRIPTION:Enseignant : P.FADEUILHE\nCommentaire : \n\nDate de scan : 11/
+ 04/2020 20:51
+URL:http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:TET102  - Management Social pour Ingénieur
+DTSTART;VALUE=DATE-TIME:20200624T090000
+DTEND;VALUE=DATE-TIME:20200624T123000
+DESCRIPTION:Enseignant : P.FADEUILHE\nCommentaire : \n\nDate de scan : 11/
+ 04/2020 20:51
+URL:http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:TET102  - Management Social pour Ingénieur
+DTSTART;VALUE=DATE-TIME:20200708T090000
+DTEND;VALUE=DATE-TIME:20200708T123000
+DESCRIPTION:Enseignant : P.FADEUILHE\nCommentaire : \n\nDate de scan : 11/
+ 04/2020 20:51
+URL:http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:TET102  - Management Social pour Ingénieur
+DTSTART;VALUE=DATE-TIME:20200902T090000
+DTEND;VALUE=DATE-TIME:20200902T123000
+DESCRIPTION:Enseignant : P.FADEUILHE\nCommentaire : \n\nDate de scan : 11/
+ 04/2020 20:51
+URL:http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:TET102  - Management Social pour Ingénieur
+DTSTART;VALUE=DATE-TIME:20200916T090000
+DTEND;VALUE=DATE-TIME:20200916T123000
+DESCRIPTION:Enseignant : P.FADEUILHE\nCommentaire : EXAMEN\n\nDate de scan
+  : 11/04/2020 20:51
+URL:http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl
+END:VEVENT
+END:VCALENDAR

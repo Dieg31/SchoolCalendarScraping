@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from bs4 import BeautifulSoup
@@ -5,8 +6,18 @@ import re
 import os
 import time
 from icalendar import Calendar, Event
-import dateparser # $ pip install dateparser
+import dateparser
 from datetime import datetime, timedelta
+from pytz import timezone
+import logging
+import requests
+import sys
+
+
+
+logger = logging.getLogger('scraper')
+hdlr = logging.FileHandler('/var/log/scraper.log')
+
 
 class Cours:
     """
@@ -32,7 +43,6 @@ class Cours:
     
     def __repr__(self):
         return "Cours()"
-
 
 def scrapCours(driver, cours, year, semaine):
     """
@@ -130,12 +140,29 @@ def getDayOfWeek(driver):
         semaine.append(col.text)
 
     return semaine
-
+ 
 def get_cal():
-    now = datetime.now()
-    print("edtScraping ", now.strftime("%d/%m/%Y %H:%M"))
+    formatter = logging.Formatter(datetime.now().strftime("%d/%m/%Y %H:%M:%S") + ' %(levelname)s %(message)s')
+    hdlr.setFormatter(formatter)
+    logger.addHandler(hdlr) 
+    logger.setLevel(logging.DEBUG)
     
+    logger.info('--------------------------------')
+    now = datetime.now()
+    debutTraitement = datetime.now().astimezone(timezone('Europe/Paris'))
+
+    logger.info("🔽  Scrap prepare")
+
     url = "http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl"
+
+    try:
+        r = requests.head(url)
+        if r.status_code != 200: 
+            logger.error('⛔️ Site injoignable')
+            sys.exit()
+    except requests.ConnectionError:
+        logger.error('⛔️ failed to connect')
+        sys.exit()
 
     # create a new Firefox session
     #driver = webdriver.Firefox()
@@ -156,8 +183,8 @@ def get_cal():
     monday2 = (finAnnee - timedelta(days=finAnnee.weekday()))
 
     numberOfWeekUntilEndOfYear = int(((monday2 - monday1).days / 7) + 1)
-
-    print("Scrap starting ...")
+    
+    logger.info("⏺  Scrap started")
     for i in range(numberOfWeekUntilEndOfYear):
         year = getYear(driver)
         week = getDayOfWeek(driver)        
@@ -190,25 +217,74 @@ def get_cal():
             matiere = cour.matiere[:6] + " " + cour.matiere[6:]
 
             event.add('summary', matiere) 
-            event.add('description', 'Enseignant : ' + cour.enseignant + "\nCommentaire : " + cour.commentaire + "\nhttp://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl") 
+
+            desc =  "Enseignant : " + cour.enseignant
+            desc += "\nCommentaire : " + cour.commentaire
+            desc += "\n\nDate de scan : " + datetime.now().strftime("%d/%m/%Y %H:%M")
+            event.add('description', desc ) 
+            
+            event.add('url', "http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl")
+            
+            
             cal.add_component(event)
     
-    print("Scrap end")
+    logger.info("⏺  Scrap ended")
 
-    # sauvegarde du .ics historique
-    dateForIcsName = today.strftime('%Y-%m-%d_%H:%M')
-    with open('/home/scraper/history/calendarCnamI2'+ dateForIcsName +'.ics', 'wb') as f:
-        f.write(cal.to_ical())
-        f.close
-        print('/home/scraper/history/calendarCnamI2' + dateForIcsName +'.ics Saved')
+    #comparaison avec le dernier calendrier enregistré
+    
+    #on tranforme le cal en text et on enlève les \r pour la comparaison avec fichier enregistrer (\r en trop)
+    # print(repr(calText)) #pour afficher les \n et \r
 
+    calText = cal.to_ical().decode("utf-8").split("\r")
+    calText = ''.join(calText)
 
-    # ecrasement de l'ancien sauvegarde du nouveau
-    with open('/home/scraper/last/calendarCnamI2.ics', 'wb') as f:
-        f.write(cal.to_ical())
-        f.close
-        print("/home/scraper/last/calendarCnamI2.ics Saved")
+    # on recupere le dernier fichier recupéré
+    calendarLast = open('/home/scraper/last/calendarCnamI2.ics')
+    calendarLastText = calendarLast.read()
 
+    cal1 = Calendar.from_ical(calendarLastText).walk()
+    cal2 = Calendar.from_ical(calText).walk()
+
+    save = False
+    # si la longueur des cal ≠ : sauvegarde
+    if( len(cal1) != len(cal2)):
+        save = True
+        logger.info('⏺  Sauvegarde : size ≠')
+    else:
+        # element 0 = tout le calendrier
+        for i in range(1, len(cal1)):
+            # si les startdate ≠ ou resumé ≠ : sauvegare
+            if( cal1[i].get('dtstart').dt != cal2[i].get('dtstart').dt or cal1[i].get('summary') != cal2[i].get('summary')):
+                logger.info("⏺  Sauvegarde : content ≠")
+                save = True
+                break
+
+   
+    if save:
+        logger.info("✅  Enregistrement du nouveau ics : ")
+
+        # sauvegarde du .ics historique
+        dateForIcsName = today.strftime('%Y-%m-%d_%H:%M')
+        with open('/home/scraper/history/calendarCnamI2'+ dateForIcsName +'.ics', 'wb') as f:
+            f.write(cal.to_ical())
+            f.close
+            logger.info('❕  /home/scraper/history/calendarCnamI2' + dateForIcsName +'.ics Saved')
+
+        # ecrasement de l'ancien sauvegarde du nouveau
+        with open('/home/scraper/last/calendarCnamI2.ics', 'wb') as f:
+            f.write(cal.to_ical())
+            f.close
+            logger.info("❕  /home/scraper/last/calendarCnamI2.ics Saved")
+
+    else:
+        logger.info("❎  Nouveau calendrier identique au précédent, pas de sauvegarde")
+
+    finTraitement = datetime.now().astimezone(timezone('Europe/Paris'))
+    logger.info('⏺  End')
+
+    FMT = '%H:%M:%S'
+    tdelta = datetime.strptime(finTraitement.strftime("%H:%M:%S"), FMT) - datetime.strptime(debutTraitement.strftime("%H:%M:%S") , FMT)
+    logger.info('⏺  Durée : ' +  str(tdelta))
+    logger.info('--------------------------------')
 
     return cal
-
