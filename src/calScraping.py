@@ -13,8 +13,6 @@ import logging
 import requests
 import sys
 
-qsdlkjshsqlkjf
-
 logger = logging.getLogger('scraper')
 hdlr = logging.FileHandler('/var/log/scraper.log')
 
