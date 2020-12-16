@@ -1,15 +1,15 @@
-version: '2'
+version: '3.8'
 services:
     cnam-calendar-dev:
         container_name: scraperDev
         build:
-            context: ./../
-            dockerfile: ./devEnv/Dockerfile
+            context: .
+            dockerfile: ./Dockerfile.dev
         image: scraper
         volumes:
-            - ./../:/home/scraper/code/
-            - ./vol/last/:/home/scraper/last/
-            - ./vol/history/:/home/scraper/history/
+            - ./../src/:/home/scraper/code/
+#            - ./vol/last/:/home/scraper/last/
+#            - ./vol/history/:/home/scraper/history/
         ports:
             - 5000:5000
         tty: true

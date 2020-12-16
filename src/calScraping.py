@@ -13,7 +13,7 @@ import logging
 import requests
 import sys
 
-
+qsdlkjshsqlkjf
 
 logger = logging.getLogger('scraper')
 hdlr = logging.FileHandler('/var/log/scraper.log')
@@ -123,6 +123,9 @@ def scrapCours(driver, cours, year, semaine):
     return cours
 
 def getYear(driver):
+    """
+    To get the current year
+    """
     soup = BeautifulSoup(driver.page_source, 'lxml')
     ligne = soup.find('select', id=re.compile("Planning_stage1_select_semaine")).find('option', selected=True)
     year = ligne.get_text()
@@ -131,10 +134,12 @@ def getYear(driver):
     return year
 
 def getDayOfWeek(driver):
+    """
+    To get de day of the week
+    """
     soup = BeautifulSoup(driver.page_source, 'lxml')
     ligne = soup.find('table', id=re.compile(    "Planning_stage1_tab_emploi_du_temps_semaine")).find('tr')
     ligne = ligne.find_all('td')
-
     semaine = []
     for col in ligne:
         semaine.append(col.text)
