@@ -8,8 +8,8 @@ services:
         image: scraper
         volumes:
             - ./../src/:/home/scraper/code/
-#            - ./vol/last/:/home/scraper/last/
-#            - ./vol/history/:/home/scraper/history/
+            - ../volDev/last/:/home/scraper/last/
+            - ../volDev/history/:/home/scraper/history/
         ports:
             - 5000:5000
         tty: true
