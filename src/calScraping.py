@@ -12,35 +12,10 @@ from pytz import timezone
 import logging
 import requests
 import sys
+from cours import Cours
 
 logger = logging.getLogger('scraper')
 hdlr = logging.FileHandler('/var/log/scraper.log')
-
-
-class Cours:
-    """
-        Class to create a Cours
-    """
-    def __init__(self, dateDebut, dateFin, matiere, enseignant, commentaire):
-        """
-            Constructor 
-                dateDebut
-                dateFin
-                matiere
-                enseignant
-                commentaire
-        """
-        self.dateDebut = dateDebut
-        self.dateFin = dateFin
-        self.matiere = matiere
-        self.enseignant = enseignant
-        self.commentaire = commentaire
-
-    def __str__(self):
-        return "date debut : " + self.dateDebut + "\ndate de fin : " + self.dateFin + "\nmatiere : " + self.matiere + "\nenseignant : " + self.enseignant + "\ncommentaire : " + self.commentaire + "\n"
-    
-    def __repr__(self):
-        return "Cours()"
 
 def scrapCours(driver, cours, year, semaine):
     """
@@ -48,12 +23,15 @@ def scrapCours(driver, cours, year, semaine):
     """
     soup = BeautifulSoup(driver.page_source, 'lxml')
 
-    cours.append(Cours(
-    semaine[1] + " " + year + " 9:00",
-    semaine[1] + " " + year + " 12:30", 
-    soup.find('span', id=re.compile(    "Planning_stage1_label_matiere_lundi_matin")).get_text(),
-    soup.find('span', id=re.compile( "Planning_stage1_label_enseignant_lundi_matin")).get_text(),
-    soup.find('span', id=re.compile("Planning_stage1_label_commentaire_lundi_matin")).get_text() ))
+    cours.append(
+        Cours(
+            semaine[1] + " " + year + " 9:00",
+            semaine[1] + " " + year + " 12:30", 
+            soup.find('span', id=re.compile(    "Planning_stage1_label_matiere_lundi_matin")).get_text(),
+            soup.find('span', id=re.compile( "Planning_stage1_label_enseignant_lundi_matin")).get_text(),
+            soup.find('span', id=re.compile("Planning_stage1_label_commentaire_lundi_matin")).get_text() 
+        )
+    )
 
     cours.append(Cours(
     semaine[1] + " " + year + " 13:30",
@@ -156,7 +134,7 @@ def get_cal():
 
     logger.info("🔽  Scrap prepare")
 
-    url = "http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl"
+    url = "http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl2"
 
     try:
         r = requests.head(url)
@@ -179,7 +157,7 @@ def get_cal():
     cours = []
 
     #calcul nombre de semaine avant la fin de l'année
-    finAnnee = dateparser.parse("30 octobre 2020 17:00")
+    finAnnee = dateparser.parse("5 novembre 2021 17:00")
     today = datetime.now()
 
     monday1 = (today - timedelta(days=today.weekday()))
@@ -201,7 +179,7 @@ def get_cal():
     driver.quit()
 
     cal = Calendar()
-    cal.add("summary", "Calendrier Cnam I2")
+    cal.add("summary", "Calendrier Cnam I3")
     cal.add('version', '2.0')
 
     for cour in cours :
@@ -226,7 +204,7 @@ def get_cal():
             desc += "\n\nDate de scan : " + datetime.now().strftime("%d/%m/%Y %H:%M")
             event.add('description', desc ) 
             
-            event.add('url', "http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl")
+            event.add('url', "http://www.ipst-info.net/consultation/default_stage.aspx?stage=aisl2")
             
             
             cal.add_component(event)
@@ -242,7 +220,7 @@ def get_cal():
     calText = ''.join(calText)
 
     # on recupere le dernier fichier recupéré
-    calendarLast = open('/home/scraper/last/calendarCnamI2.ics')
+    calendarLast = open('/home/scraper/last/calendarCnamI3.ics')
     calendarLastText = calendarLast.read()
 
     cal1 = Calendar.from_ical(calendarLastText).walk()
@@ -268,16 +246,16 @@ def get_cal():
 
         # sauvegarde du .ics historique
         dateForIcsName = today.strftime('%Y-%m-%d_%H:%M')
-        with open('/home/scraper/history/calendarCnamI2'+ dateForIcsName +'.ics', 'wb') as f:
+        with open('/home/scraper/history/calendarCnamI3'+ dateForIcsName +'.ics', 'wb') as f:
             f.write(cal.to_ical())
             f.close
-            logger.info('❕  /home/scraper/history/calendarCnamI2' + dateForIcsName +'.ics Saved')
+            logger.info('❕  /home/scraper/history/calendarCnamI3' + dateForIcsName +'.ics Saved')
 
         # ecrasement de l'ancien sauvegarde du nouveau
-        with open('/home/scraper/last/calendarCnamI2.ics', 'wb') as f:
+        with open('/home/scraper/last/calendarCnamI3.ics', 'wb') as f:
             f.write(cal.to_ical())
             f.close
-            logger.info("❕  /home/scraper/last/calendarCnamI2.ics Saved")
+            logger.info("❕  /home/scraper/last/calendarCnamI3.ics Saved")
 
     else:
         logger.info("❎  Nouveau calendrier identique au précédent, pas de sauvegarde")
